@@ -29,5 +29,12 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.34.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@threlte/core": "^6.1.0",
+		"@threlte/extras": "^7.5.1",
+		"d3": "^7.8.5",
+		"gl-matrix": "^3.4.3",
+		"three": "^0.158.0"
+	}
 }
