@@ -2,7 +2,6 @@
     import { Canvas, T } from "@threlte/core";
     import { OrbitControls } from '@threlte/extras';
     // import { Canvas, OrbitControls, T } from "@threlte/core";
-    import { degToRad } from "three/src/math/MathUtils";
     import { vec3, quat } from 'gl-matrix';
     import { Euler, Quaternion, Vector3 } from "three";
     // import { scale } from "svelte/types/runtime/transition";
