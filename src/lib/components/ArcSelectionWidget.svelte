@@ -92,6 +92,7 @@
 	};
 
 	const touchStart = (event: TouchEvent) => {
+		console.log('touch start.');
 		switch (event.touches.length) {
 			case 1:
 				if (event.target == undefined) {
@@ -111,7 +112,7 @@
 	};
 	const touchEnd = (event: TouchEvent) => {
 		//~ => selection finished
-		console.log('Selection ended.');
+		console.log('touch end.');
 		selectionInProgress = false;
 		dispatch('selectionFinished', {
 			selection: selections.slice(-1)[0],
@@ -120,10 +121,19 @@
 		});
 	};
 	const touchMove = (event: TouchEvent) => {
-		hoveredBin = parseInt(event.target.id.split('-')[1]); //~ this is bit of a weird solution...maybe fix later
+		console.log('touch move');
+		event.preventDefault();
+		event.stopPropagation();
+        const firstTouch = event.touches[0];
+        const elUnderTouch = document.elementFromPoint(firstTouch.clientX, firstTouch.clientY);
+        if (elUnderTouch == null) {
+            return;
+        }
+		hoveredBin = parseInt(elUnderTouch.id.split('-')[1]); //~ this is bit of a weird solution...maybe fix later
 		//~ multiple selections version
 		if (selectionInProgress) {
-			const binId = parseInt(event.target.id.split('-')[1]); //~ this is bit of a weird solution...maybe fix later
+			console.log('hoveredBin:' + hoveredBin);
+			const binId = parseInt(elUnderTouch.id.split('-')[1]); //~ this is bit of a weird solution...maybe fix later
 			const activeSelection = selections.slice(-1)[0];
 			const selectionsMinusLast = selections.slice(0, selections.length - 1);
 			//~ figure out which direction the selection is
